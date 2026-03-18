@@ -1,0 +1,45 @@
+\documentclass[aspectratio=169]{ctexbeamer}
+\usepackage{tuanyuan-beamer}
+
+\title{团支部专题汇报模板}
+\author{示例团支部}
+\date{\today}
+
+\begin{document}
+
+% [EN] Replace the title, branch label, and subtitle to reuse the cover page in another branch. / [CN] 替换标题、支部名称和副标题后即可在其他团支部场景中复用封面页。
+\TYTitlePage
+  {2025年度组织生活会\\暨团员教育评议}
+  {示例团支部}
+  {依据组织生活会通知整理，可直接替换为本支部会议名称、日期与说明。}
+
+% [EN] Keep four agenda rows to match the original PPT rhythm; the text itself can be changed freely. / [CN] 目录页保留四项议程可最大程度贴合原 PPT 节奏，具体文字可按需要替换。
+\TYAgendaPage{
+  \TYAgendaRow{01}{团纪学习教育}
+  \TYAgendaRow{02}{个人陈述和团员互评}
+  \TYAgendaRow{03}{民主评议}
+  \TYAgendaRow{04}{重温入团誓词}
+}
+
+\TYSectionPage{一}{章节标题示例}
+
+\begin{TYContentFrame}{内容页标题示例}
+  \begin{block}{说明示例}
+    \begin{itemize}
+      \item 在这里填入会议要求、流程说明或工作安排。
+      \item 建议每页控制在 1 至 2 个信息块内，避免文字过满。
+      \item 可使用 \texttt{columns}、\texttt{block} 和 \texttt{tabularx} 组织内容。
+    \end{itemize}
+  \end{block}
+
+  \begin{block}{名单示例}
+    \small
+    张三 \qquad 李四 \qquad 王五 \qquad 赵六 \TYBadge{党员}
+  \end{block}
+
+  \TYNote{模板默认背景纹理、团徽、红绸、飞鸟等素材。}
+\end{TYContentFrame}
+
+\TYClosingPage{感谢聆听 学习结束}{示例团支部}
+
+\end{document}

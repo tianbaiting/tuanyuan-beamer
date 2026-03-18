@@ -1,0 +1,210 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{tuanyuan-beamer}[2026/03/18 Youth League evaluation slide theme]
+
+\RequirePackage{xparse}
+\RequirePackage{tikz}
+\RequirePackage{graphicx}
+\RequirePackage{tabularx}
+\RequirePackage{multicol}
+\RequirePackage{booktabs}
+\RequirePackage{ragged2e}
+\RequirePackage{array}
+\RequirePackage{etoolbox}
+\RequirePackage{calc}
+\usetikzlibrary{calc}
+
+% [EN] Reuse the extracted PPT assets so the LaTeX output keeps the same visual rhythm. / [CN] 复用从 PPT 中拆出的素材，使 LaTeX 成稿尽量保持原版式的视觉节奏。
+\graphicspath{{assets/}}
+
+\definecolor{TYRed}{HTML}{B20F2E}
+\definecolor{TYDarkRed}{HTML}{831426}
+\definecolor{TYGold}{HTML}{CC9815}
+\definecolor{TYText}{HTML}{4B3426}
+\definecolor{TYMuted}{HTML}{7A6556}
+\definecolor{TYPanel}{HTML}{FFF8F2}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}{}
+\setbeamertemplate{headline}{}
+\setbeamersize{text margin left=8mm,text margin right=8mm}
+\setbeamertemplate{itemize item}{\color{TYRed}\small$\blacksquare$}
+\setbeamertemplate{itemize subitem}{\color{TYRed}\scriptsize$\blacktriangleright$}
+\setbeamertemplate{background canvas}{%
+  \includegraphics[width=\paperwidth,height=\paperheight]{backimg.png}%
+}
+
+\setbeamercolor{normal text}{fg=TYText,bg=white}
+\setbeamercolor{frametitle}{fg=TYRed,bg=white}
+\setbeamercolor{structure}{fg=TYRed}
+\setbeamercolor{block title}{fg=white,bg=TYRed}
+\setbeamercolor{block body}{fg=TYText,bg=TYPanel}
+
+\setbeamerfont{title}{series=\bfseries,size=\fontsize{26}{30}\selectfont}
+\setbeamerfont{subtitle}{size=\large}
+\setbeamerfont{frametitle}{series=\bfseries,size=\fontsize{20}{24}\selectfont}
+\setbeamerfont{block title}{series=\bfseries,size=\normalsize}
+
+\newcommand{\TYTitleTopDecor}{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[anchor=north west,inner sep=0pt] at ($(current page.center)+(-0.5\paperwidth,0.5\paperheight)$) {%
+      \includegraphics[width=.27\paperwidth]{red_ribbon.png}%
+    };
+    \node[anchor=north east,inner sep=0pt] at ($(current page.center)+(0.5\paperwidth,0.5\paperheight)+(-0.42cm,-0.28cm)$) {%
+      \includegraphics[trim=21bp 23bp 29bp 31bp,clip,width=.13\paperwidth]{birds.png}%
+    };
+  \end{tikzpicture}%
+}
+
+\newcommand{\TYFrameTopDecor}{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[anchor=north west,inner sep=0pt] at (current page.north west) {%
+      \includegraphics[width=.19\paperwidth]{red_ribbon.png}%
+    };
+    \node[anchor=north east,inner sep=0pt] at ($(current page.north east)+(-0.46cm,-0.30cm)$) {%
+      \includegraphics[trim=21bp 23bp 29bp 31bp,clip,width=.11\paperwidth]{birds.png}%
+    };
+  \end{tikzpicture}%
+}
+
+\newcommand{\TYTitleBottomDecor}{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[anchor=south west,inner sep=0pt] at ($(current page.south west)+(0.08cm,-0.28cm)$) {%
+      \includegraphics[width=.10\paperwidth]{flag_group.png}%
+    };
+    \node[anchor=south,inner sep=0pt] at ($(current page.south)+(0.08cm,-0.32cm)$) {%
+      \includegraphics[width=.18\paperwidth]{youth_oath.png}%
+    };
+    \node[anchor=south east,inner sep=0pt] at ($(current page.south east)+(-0.08cm,-0.28cm)$) {%
+      \includegraphics[width=.15\paperwidth]{tiananmen.png}%
+    };
+    \node[anchor=south east,inner sep=0pt] at ($(current page.south east)+(-0.22cm,-0.06cm)$) {%
+      \includegraphics[width=.40\paperwidth]{skyline.png}%
+    };
+  \end{tikzpicture}%
+}
+
+\newcommand{\TYTitlePage}[3]{%
+  \begin{frame}[plain]
+    \vspace*{1.30cm}
+    \hspace*{1.20cm}%
+    \colorbox{TYRed!95}{%
+      \parbox[c][0.72cm][c]{4.45cm}{\centering\color{white}\bfseries\large #2}%
+    }\par
+    \vspace{0.70cm}
+    \hspace*{1.18cm}%
+    \parbox{0.62\linewidth}{%
+      \raggedright\color{TYRed}\bfseries\fontsize{26}{32}\selectfont #1%
+    }\par
+    \vspace{0.40cm}
+    \hspace*{1.18cm}%
+    \parbox{0.56\linewidth}{%
+      \raggedright\color{TYMuted}\normalsize #3%
+    }\par
+    \TYTitleTopDecor
+    \TYTitleBottomDecor
+  \end{frame}
+}
+
+\NewDocumentCommand{\TYAgendaPage}{+m}{%
+  \begin{frame}[plain]
+    \vspace*{0.35cm}
+    \begin{columns}[c,onlytextwidth]
+      \begin{column}{0.62\textwidth}
+        {\color{TYRed}\bfseries\fontsize{24}{28}\selectfont 目录\par}
+        \vspace{0.05cm}
+        {\color{TYGold}\fontsize{15}{18}\selectfont Contents\par}
+      \end{column}
+      \begin{column}{0.30\textwidth}
+        \raggedleft\includegraphics[width=.21\paperwidth]{youth_league_badge.png}
+      \end{column}
+    \end{columns}
+    \vspace{0.50cm}
+    #1
+    \vfill
+    \hfill\includegraphics[width=\paperwidth]{skyline.png}
+  \end{frame}
+}
+
+\newcommand{\TYAgendaRow}[2]{%
+  \noindent
+  \hspace*{0.95cm}%
+  \begin{minipage}[t]{1.30cm}
+    \raggedright\color{TYRed}\bfseries\fontsize{18}{20}\selectfont #1
+  \end{minipage}%
+  \begin{minipage}[t]{8.20cm}
+    \raggedright\color{TYText}\fontsize{15.5}{18.5}\selectfont #2
+  \end{minipage}\par\vspace{0.42cm}
+}
+
+\newcommand{\TYSectionPage}[2]{%
+  \begin{frame}[plain]
+    \vspace*{1.45cm}
+    \noindent
+    \colorbox{TYRed}{%
+      \parbox[c][2.15cm][c]{2.20cm}{%
+        \centering
+        \color{TYGold}\bfseries\fontsize{24}{28}\selectfont 第#1\\[0.12cm]
+        \color{TYGold}\bfseries\fontsize{20}{24}\selectfont 部分
+      }%
+    }%
+    \hspace{0.75cm}%
+    \parbox[c][2.15cm][c]{8.35cm}{%
+      \raggedright
+      \color{TYRed}\bfseries\fontsize{24}{30}\selectfont #2\par
+      \vspace{0.16cm}
+      {\color{TYRed}\rule{7.10cm}{1.2pt}}%
+    }\par
+    \vfill
+    \hfill\includegraphics[width=.24\paperwidth]{skyline.png}
+  \end{frame}
+}
+
+\newcommand{\TYContentChrome}[1]{%
+  \vspace*{0.92cm}
+  {\color{TYRed}\bfseries\fontsize{19}{23}\selectfont #1\par}
+  \vspace{0.04cm}
+  {\color{TYRed}\rule{4.30cm}{1.2pt}\par}
+  \vspace{0.28cm}
+}
+
+\NewDocumentEnvironment{TYContentFrame}{m+b}{%
+  \begin{frame}[plain]
+    \TYContentChrome{#1}
+    {\fontsize{10.8}{13.2}\selectfont #2}
+    \TYFrameTopDecor
+  \end{frame}
+}{}
+
+\newcommand{\TYNote}[1]{%
+  \vspace{0.18cm}
+  {\centering\color{TYMuted}\fontsize{9.5}{11}\selectfont #1\par}
+}
+
+\newcommand{\TYBadge}[1]{%
+  \begingroup
+  \setlength{\fboxsep}{2pt}%
+  \colorbox{TYRed!10}{\textcolor{TYRed}{\scriptsize\bfseries #1}}%
+  \endgroup
+}
+
+\newcommand{\TYClosingPage}[2]{%
+  \begin{frame}[plain]
+    \vspace*{1.30cm}
+    \hspace*{1.18cm}%
+    \parbox{0.62\linewidth}{%
+      \raggedright\color{TYRed}\bfseries\fontsize{28}{34}\selectfont #1%
+    }\par
+    \vspace{0.1cm}
+    \hspace*{1.18cm}%
+    \colorbox{TYRed!95}{%
+      \parbox[c][0.72cm][c]{4.45cm}{\centering\color{white}\bfseries\large #2}%
+    }\par
+    \vspace{0.38cm}
+    \hspace*{1.18cm}%
+    \parbox{0.62\linewidth}{%
+      \raggedright\color{TYMuted}\normalsize 激励和引导青年弘扬以爱国主义为核心的伟大民族精神%
+    }\par
+    \TYTitleTopDecor
+    \TYTitleBottomDecor
+  \end{frame}
+}
