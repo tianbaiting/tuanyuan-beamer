@@ -24,7 +24,7 @@
      ```
    - 或使用 latexmk：
      ```
-     latexmk -pdfxe -interaction=nonstopmode [tuanyuan_template.tex](http://_vscodecontentref_/2)
+     latexmk -pdfxe -interaction=nonstopmode tuanyuan_template.tex
      ```
 4. 生成 PDF 后检查图片是否正确加载（若提示找不到图片，确认 `assets/` 在同目录且文件名大小写匹配）。
 
